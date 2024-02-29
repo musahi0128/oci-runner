@@ -1,8 +1,7 @@
 name: Run OCI instance launch API calls
 
 on:
-  workflow_dispatch:
-    branches: [ "main" ]
+  workflow_dispatch
 
 jobs:
   oci-runner:
