@@ -23,7 +23,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Install
-        run: /bin/bash -c $(curl https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/d3aa3a1834cf3d105a5bdf5f622417103599bdbe/oci-runner.install.sh)
+        run: curl https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/d3aa3a1834cf3d105a5bdf5f622417103599bdbe/oci-runner.install.sh | /bin/bash
       - name: Run
         run: /bin/bash /root/.oci/instance_launch.sh
       - name: Check output
