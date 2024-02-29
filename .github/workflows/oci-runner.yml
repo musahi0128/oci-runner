@@ -5,12 +5,9 @@ on:
 
 jobs:
   oci-runner:
-    runs-on: ubuntu-latest
+    runs-on:
   	container:
   	  image: ghcr.io/musahi0128/ubuntu-docker:main
-  	  credentials:
-        username: ${{ github.actor }}
-        password: ${{ secrets.github_token }}
     steps:
       - name: Install
         run: (wget -O /tmp/oci-runner.install.sh "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/d3aa3a1834cf3d105a5bdf5f622417103599bdbe/oci-runner.install.sh" && /bin/bash /tmp/oci-runner.install.sh)
