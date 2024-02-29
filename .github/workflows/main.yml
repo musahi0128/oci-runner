@@ -13,11 +13,10 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
     steps:
-      - name: Cache Container Images
-        id: cache-container-images
-        uses: jamesmortensen/cache-container-images-action@v1
+      - name: Cache Docker images.
+        uses: ScribeMD/docker-cache@0.3.7
         with:
-          images: ghcr.io/musahi0128/ubuntu-docker:oci-runner
+          key: docker-${{ runner.os }}-${{ hashFiles('/root/bin/oci') }}
       - name: Preparation
         run: sudo mkdir -p /root/.oci /root/.ssh
       - name: Install step 1
