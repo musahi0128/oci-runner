@@ -13,8 +13,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
     steps:
-      - uses: satackey/action-docker-layer-caching@v0.0.11
-        continue-on-error: true
       - name: Preparation
         run: sudo mkdir -p /root/.oci /root/.ssh
       - name: Install step 1
@@ -35,8 +33,8 @@ jobs:
           export OCI_CLI_RC_FILE=/root/.oci/config
           sudo /root/bin/oci setup repair-file-permissions --file /root/.oci/config
           sudo /root/bin/oci setup repair-file-permissions --file /root/.ssh/id_rsa
-          sudo /root/bin/oci compute instance launch \
-          --availability-domain pKfE:PHX-AD-1 \
+          for a in {1..3}; do sudo /root/bin/oci compute instance launch \
+          --availability-domain pKfE:PHX-AD-$a \
           --compartment-id ocid1.tenancy.oc1..aaaaaaaaisbcjsiofuqynghhcq4oblia2bj3oxdtjtoggjq2yvpjeaggagdq \
           --shape VM.Standard.A1.Flex \
           --subnet-id ocid1.subnet.oc1.phx.aaaaaaaa5nfz6vn44fsmxb7fbm5s3ter3rjnpppgcm5nlraeir5swmvuj2qa \
@@ -47,6 +45,5 @@ jobs:
           --image-id ocid1.image.oc1.phx.aaaaaaaat7ebgwjg5n4rm3aivj5ejm7v2w7pfqpz3zrix6x5xt522sfipg3q \
           --instance-options file:///root/.oci/instanceOptions.json \
           --shape-config file:///root/.oci/shapeConfig.json \
-          --ssh-authorized-keys-file /root/.ssh/id_ed25519.pub
-      - name: Check output
-        run: for a in 1 2 3; do sudo cat /root/.oci/instance_launch.$a.log; done
+          --ssh-authorized-keys-file /root/.ssh/id_ed25519.pub & done
+          while wait -n; do : ; done;
