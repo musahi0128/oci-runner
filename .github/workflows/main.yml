@@ -32,10 +32,11 @@ jobs:
         run: |
           echo Content of /root/.oci/instance_launch.sh:
           cat /root/.oci/instance_launch.sh
-          echo Location of oci executable:
-          whereis oci
+          echo Version of oci
+          /root/bin/oci --version
           echo List of file with name oci:
           sudo find / -name oci
           sudo bash /root/.oci/instance_launch.sh
+          wait
       - name: Check output
         run: for a in 1 2 3; do sudo cat /root/.oci/instance_launch.$a.log; done
