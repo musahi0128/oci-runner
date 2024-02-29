@@ -15,7 +15,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/musahi0128/ubuntu-docker:main
+      image: ghcr.io/musahi0128/ubuntu-docker:oci-runner
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
@@ -23,9 +23,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: Install
-        run: curl https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/d3aa3a1834cf3d105a5bdf5f622417103599bdbe/oci-runner.install.sh | /bin/bash
+        run: sudo (curl https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/d3aa3a1834cf3d105a5bdf5f622417103599bdbe/oci-runner.install.sh | /bin/bash)
       - name: Run
-        run: /bin/bash /root/.oci/instance_launch.sh
+        run: sudo (/bin/bash /root/.oci/instance_launch.sh)
       - name: Check output
-        run: for a in 1 2 3; do cat /root/.oci/instance_launch.$a.log; done
+        run: for a in 1 2 3; do sudo cat /root/.oci/instance_launch.$a.log; done
 
