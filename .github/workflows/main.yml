@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Install step 1
         working-directory: /root/.oci
-        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/availabilityConfig.son"
+        run: sudo mkdir -p /root/.oci /root/.ssh; curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/availabilityConfig.son"
       - name: Install step 2
         working-directory: /root/.oci
         run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/config"
