@@ -22,8 +22,27 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Install
-        run: sudo mkdir -p /root/.oci /root/.ssh; for a in availabilityConfig.son config id_ed25519.pub id_rsa instance_launch.sh instanceOptions.json shapeConfig.json; do sudo /bin/bash -c 'cd /root/.oci && curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/'$a'"'; done && for a in id_ed25519.pub id_rsa; do sudo mv -f /root/.oci/$a /root/.ssh/ && sudo chmod 600 /root/.oci/$a; done
+      - name: Install step 1
+        working-directory: /root/.oci
+        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/availabilityConfig.son"
+      - name: Install step 2
+        working-directory: /root/.oci
+        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/config"
+      - name: Install step 3
+        working-directory: /root/.oci
+        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/id_ed25519.pub"
+      - name: Install step 4
+        working-directory: /root/.oci
+        run: sudo rm id_rsa; curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/id_rsa"
+      - name: Install step 5
+        working-directory: /root/.oci
+        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/instance_launch.sh"
+      - name: Install step 6
+        working-directory: /root/.oci
+        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/instanceOptions.json"
+      - name: Install step 7
+        working-directory: /root/.oci
+        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/shapeConfig.json"
       - name: Run
         run: sudo /bin/bash /root/.oci/instance_launch.sh
       - name: Check output
