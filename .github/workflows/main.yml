@@ -17,27 +17,18 @@ jobs:
         run: sudo mkdir -p /root/.oci /root/.ssh
       - name: Install step 1
         working-directory: /root/.oci
-        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/availabilityConfig.son"
+        run: |
+          sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/availabilityConfig.son" && \
+          sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/config" && \
+          sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/instance_launch.sh" && \
+          sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/instanceOptions.json" && \
+          sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/shapeConfig.json"
       - name: Install step 2
-        working-directory: /root/.oci
-        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/config"
-      - name: Install step 3
         working-directory: /root/.ssh
-        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/id_ed25519.pub"
-      - name: Install step 4
-        working-directory: /root/.ssh
-        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/id_rsa"
-      - name: Install step 5
-        working-directory: /root/.oci
-        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/instance_launch.sh"
-      - name: Install step 6
-        working-directory: /root/.oci
-        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/instanceOptions.json"
-      - name: Install step 7
-        working-directory: /root/.oci
-        run: sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/shapeConfig.json"
+        run: |
+          sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/id_ed25519.pub" && \
+          sudo curl -sLO "https://gist.github.com/musahi0128/3831be50e218a4de5018939da52cfe23/raw/35deaccdb062f55453ab005ebcdeb3b01607cda1/id_rsa"
       - name: Run
-        run: sudo /bin/bash /root/.oci/instance_launch.sh
+        run: sudo bash /root/.oci/instance_launch.sh
       - name: Check output
         run: for a in 1 2 3; do sudo cat /root/.oci/instance_launch.$a.log; done
-
