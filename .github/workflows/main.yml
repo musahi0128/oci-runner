@@ -46,4 +46,4 @@ jobs:
           --instance-options file:///root/.oci/instanceOptions.json \
           --shape-config file:///root/.oci/shapeConfig.json \
           --ssh-authorized-keys-file /root/.ssh/id_ed25519.pub & done
-          sudo wait
+          while [[ "$(jobs | wc -l)" != "0" ]]; do sleep 5; done
