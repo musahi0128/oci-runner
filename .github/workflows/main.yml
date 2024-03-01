@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - 'main'
+  schedule:
+    - cron: '*/7 * * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -47,4 +49,4 @@ jobs:
           --instance-options file:///root/.oci/instanceOptions.json \
           --shape-config file:///root/.oci/shapeConfig.json \
           --ssh-authorized-keys-file /root/.ssh/id_ed25519.pub & done
-          while [[ "$(jobs | wc -l)" != "0" ]]; do sleep 5; done
+          while [[ "$(jobs | wc -l)" != 0 ]]; do sleep 5; done
