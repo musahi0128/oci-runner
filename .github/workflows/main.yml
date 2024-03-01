@@ -1,11 +1,11 @@
 name: OCI runner
 on:
-  workflow_dispatch:
   push:
     branches:
       - 'main'
   schedule:
-    - cron: '*/7 * * * *'
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
