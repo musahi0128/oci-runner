@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/musahi0128/ubuntu-docker:oci-runner
+      image: ghcr.io/musahi0128/oci-runner-docker:main
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
