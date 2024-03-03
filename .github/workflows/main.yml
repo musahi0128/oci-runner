@@ -7,7 +7,7 @@ on:
     - cron: '*/10 * * * *'
   workflow_dispatch:
 jobs:
-  build:
+  instance_launch:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/musahi0128/oci-runner-docker:main
