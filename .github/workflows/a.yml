@@ -5,7 +5,7 @@ on:
     workflows: ["OCI runner #2"]
     types: [completed]
 jobs:
-  on-failure:
+  launch_instance:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/musahi0128/oci-runner-docker:main
@@ -15,7 +15,6 @@ jobs:
     steps:
       - name: Run
         shell: bash
-        continue-on-error: true
         run: |
           export OCI_CLI_RC_FILE=/root/.oci/config
           sudo /root/bin/oci setup repair-file-permissions --file /root/.oci/config
@@ -32,4 +31,4 @@ jobs:
           --image-id ocid1.image.oc1.phx.aaaaaaaat7ebgwjg5n4rm3aivj5ejm7v2w7pfqpz3zrix6x5xt522sfipg3q \
           --instance-options file:///root/.oci/instanceOptions.json \
           --shape-config file:///root/.oci/shapeConfig.json \
-          --ssh-authorized-keys-file /root/.ssh/id_ed25519.pub; sleep 30; done
+          --ssh-authorized-keys-file /root/.ssh/id_ed25519.pub && echo "Lucky!" || echo "Try again"; done
