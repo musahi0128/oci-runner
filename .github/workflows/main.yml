@@ -1,4 +1,4 @@
-name: OCI runner
+name: OCI runner #1
 on:
   push:
     branches:
@@ -7,11 +7,10 @@ on:
   #   - cron: '*/10 * * * *'
   workflow_dispatch:
   workflow_run:
-    workflows: ["OCI runner"]
-    types:
-      - completed
+    workflows: ["OCI runner #2"]
+    types: [completed]
 jobs:
-  instance_launch:
+  on-failure:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/musahi0128/oci-runner-docker:main
