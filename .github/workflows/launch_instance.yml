@@ -18,7 +18,6 @@ jobs:
       - name: Run
         shell: bash
         run: |
-          tmate -F & \
           export OCI_CLI_RC_FILE=/root/.oci/config
           sudo /root/bin/oci setup repair-file-permissions --file /root/.oci/config
           sudo /root/bin/oci setup repair-file-permissions --file /root/.ssh/id_rsa
