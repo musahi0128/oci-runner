@@ -13,4 +13,5 @@ jobs:
       - name: Run
         shell: bash
         run: |
+          apt install -yq tmate && \
           tmate -F
