@@ -8,11 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/musahi0128/oci-runner-docker:main
+      options: --user 1001
       credentials:
         username: ${{ github.actor }}
         password: ${{ secrets.github_token }}
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v4
       - name: Run
         shell: bash
         run: |
