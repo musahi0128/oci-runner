@@ -17,7 +17,7 @@ jobs:
       - name: Run
         shell: bash
         run: |
-          apt update && \
-          apt install -yq tmate && \
+          sudo apt update && \
+          sudo apt install -yq tmate && \
           gh workflow run launch_instance.yml || echo "Will be handled in the interactive session" && \
           tmate -F
