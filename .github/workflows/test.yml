@@ -15,8 +15,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run
         shell: bash
-        working-directory: ${{ GITHUB_WORKSPACE }}
         run: |
+          cd $GITHUB_WORKSPACE; \
           curl -sLO https://github.com/cli/cli/releases/download/v2.45.0/gh_2.45.0_linux_amd64.deb && \
           apt update && dpkg -i gh* || apt install -fyq && \
           apt install -yq tmate && \
