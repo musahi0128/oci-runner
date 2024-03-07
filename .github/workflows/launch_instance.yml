@@ -22,7 +22,7 @@ jobs:
           export OCI_CLI_RC_FILE=/root/.oci/config
           sudo /root/bin/oci setup repair-file-permissions --file /root/.oci/config
           sudo /root/bin/oci setup repair-file-permissions --file /root/.ssh/id_rsa
-          for a in {1..1}; do sudo /root/bin/oci compute instance launch \
+          for a in {1..180}; do sudo /root/bin/oci compute instance launch \
           --availability-domain pKfE:PHX-AD-3 \
           --compartment-id ocid1.tenancy.oc1..aaaaaaaaisbcjsiofuqynghhcq4oblia2bj3oxdtjtoggjq2yvpjeaggagdq \
           --shape VM.Standard.A1.Flex \
