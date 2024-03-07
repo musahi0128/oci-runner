@@ -1,0 +1,16 @@
+name: "OCI runner test"
+on:
+  workflow_dispatch:
+jobs:
+  launch_instance:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/musahi0128/oci-runner-docker:main
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+    steps:
+      - name: Run
+        shell: bash
+        run: |
+          tmate -F
