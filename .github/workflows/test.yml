@@ -1,4 +1,5 @@
 name: "OCI runner test"
+permissions: write-all
 on:
   workflow_dispatch:
 env:
