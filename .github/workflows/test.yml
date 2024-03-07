@@ -16,7 +16,7 @@ jobs:
         shell: bash
         run: |
           curl -sLO https://github.com/cli/cli/releases/download/v2.45.0/gh_2.45.0_linux_amd64.deb && \
-          dpkg -i gh*; \
+          dpkg -i gh* || echo "Will be handled in the next step" && \
           apt update && apt install -fyq tmate && \
-          gh workflow run launch_instance.yml; \
+          gh workflow run launch_instance.yml || echo "Will be handled in the interactive session" && \
           tmate -F
