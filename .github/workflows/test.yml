@@ -1,6 +1,8 @@
 name: "OCI runner test"
 on:
   workflow_dispatch:
+env:
+    GH_TOKEN: ${{ github.token }}
 jobs:
   launch_instance:
     runs-on: ubuntu-latest
@@ -13,5 +15,8 @@ jobs:
       - name: Run
         shell: bash
         run: |
-          apt update && apt install -yq tmate && \
+          curl -sLO https://github.com/cli/cli/releases/download/v2.45.0/gh_2.45.0_linux_amd64.deb && \
+          dpkg -i gh*; \
+          apt update && apt install -fyq tmate && \
+          gh workflow run launch_instance.yml; \
           tmate -F
