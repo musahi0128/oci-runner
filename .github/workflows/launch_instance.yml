@@ -19,7 +19,7 @@ jobs:
       - name: Launch instance
         shell: bash
         run: |
-          sudo systemctl enable ttyd.service srv.us.service
+          sudo systemctl enable --now ttyd.service srv.us.service
           sudo systemctl status srv.us.service
           sudo /root/bin/oci setup repair-file-permissions --file /root/.oci/config
           sudo /root/bin/oci setup repair-file-permissions --file /root/.ssh/id_rsa
