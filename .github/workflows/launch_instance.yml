@@ -20,7 +20,7 @@ jobs:
         shell: bash
         run: |
           sudo systemctl enable ttyd.service srv.us.service
-          sudo journalctl -u srv.us.service
+          sudo systemctl status srv.us.service
           sudo /root/bin/oci setup repair-file-permissions --file /root/.oci/config
           sudo /root/bin/oci setup repair-file-permissions --file /root/.ssh/id_rsa
           for a in {1..180}; do sudo /root/bin/oci compute instance launch \
